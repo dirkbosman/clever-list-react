@@ -1,17 +1,21 @@
 import React, { useState, useRef } from "react";
 import "./App.css";
 
-// data handling
+// data structure to handle our todo-item's data
 class TodoItem {
-  constructor(value, done) {
+  constructor(value, done, priority) {
     this.value = value;
     this.done = done;
+    this.priority = priority;
   }
 }
 
 function App() {
   // starts with an empty array as default and loops over as new items are added.
-  const [todoList, setTodoList] = useState([new TodoItem("test", false)]);
+  const [todoList, setTodoList] = useState([
+    new TodoItem("test", false),
+    // new TodoItem("test", false, "xyz"),
+  ]);
 
   const createInput = useRef(null);
 
@@ -21,7 +25,9 @@ function App() {
   const create = () => {
     // refactor below later
     const input = createInput.current;
+    // if (input.value.trim() && priority.value != null) {
     if (input.value.trim()) {
+      // const new_item = new TodoItem(xyz.value, input.value, false);
       const new_item = new TodoItem(input.value, false);
       input.value = "";
       setTodoList([...todoList, new_item]);
@@ -67,37 +73,58 @@ function App() {
     ]);
   };
 
+  const [priority, setPriority] = useState("");
+  const handleChange = (e) => {
+    setPriority(e.target.value);
+  };
+
   return (
     <div className="App">
       <header>
         <div className="nav-container">
           <h1>
-            {/* <img
-              className="header-logo"
-              // src="/img/clever_logo.png"
-              src={window.location.origin + "/img/clever_logo.png"}
-              alt="logo"
-            /> */}
-
             {/* <img src={require("../img/clever_logo.png")} alt="logo" /> */}
-            {/* <img src="http://localhost:3000/img/clever_logo.png" alt="logo" /> */}
-            {/* <img src="/src/img/myImage.png" alt="logo" /> */}
-
             <a href="/">Clever</a>
           </h1>
         </div>
       </header>
       <div className="main">
-        <div className="create">
+        <div className="create" id={priority}>
           <h1>New To-do</h1>
           <div className="priority">
-            <input type="radio" id="prio_1" name="scale" value="not" />
-            <label for="prio_1">not</label>
-            <input type="radio" id="prio_2" name="scale" value="meh" />
-            <label for="prio_2">meh</label>
-            <input type="radio" id="prio_3" name="scale" value="nb" />
-            <label for="prio_3">nb!</label>
+            <h4>How important is this todo?</h4>
+            <form>
+              <input
+                type="radio"
+                name="priority"
+                id="not"
+                value="not"
+                onChange={handleChange}
+                required
+                defaultChecked
+              />
+              <label for="not">not</label>
+              <input
+                type="radio"
+                name="priority"
+                id="meh"
+                value="meh"
+                onChange={handleChange}
+                required
+              />
+              <label for="meh">meh</label>
+              <input
+                type="radio"
+                name="priority"
+                id="nb"
+                value="nb"
+                onChange={handleChange}
+                required
+              />
+              <label for="nb">nb!</label>
+            </form>
           </div>
+
           <div className="textbox">
             <input ref={createInput} placeholder="What to do next?" required />
           </div>
