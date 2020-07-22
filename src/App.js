@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { findByPlaceholderText } from "@testing-library/react";
@@ -7,10 +7,12 @@ function App() {
   // starts with an empty array as default and loops over as new items are added.
   const [todoList, setTodoList] = useState([]);
 
+  const createInput = useRef(null);
+
   // method to add a create item
   const create = () => {
     // refactor below later
-    const input = document.getElementById("whatToDo");
+    const input = createInput.current;
     if (input.value.trim()) {
       const new_item = new TodoItem(input.value, false);
       input.value = "";
@@ -33,7 +35,7 @@ function App() {
       <div className="main">
         <div className="create">
           <h1>New To-do</h1>
-          <input id="whatToDo" placeholder="What to do next?" required />
+          <input ref={createInput} placeholder="What to do next?" required />
           <button onClick={create}>Create</button>
         </div>
         <div>
