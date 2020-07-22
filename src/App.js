@@ -70,12 +70,12 @@ function App() {
       <header>
         <div className="nav-container">
           <h1>
-            <img
+            {/* <img
               className="header-logo"
               // src="/img/clever_logo.png"
               src={window.location.origin + "/img/clever_logo.png"}
               alt="logo"
-            />
+            /> */}
 
             {/* <img src={require("../img/clever_logo.png")} alt="logo" /> */}
             {/* <img src="http://localhost:3000/img/clever_logo.png" alt="logo" /> */}
@@ -88,9 +88,20 @@ function App() {
       <div className="main">
         <div className="create">
           <h1>New To-do</h1>
-          <input ref={createInput} placeholder="What to do next?" required />
+          <div className="priority">
+            <input type="radio" id="prio_1" name="scale" value="not" />
+            <label for="prio_1">not</label>
+            <input type="radio" id="prio_2" name="scale" value="meh" />
+            <label for="prio_2">meh</label>
+            <input type="radio" id="prio_3" name="scale" value="nb" />
+            <label for="prio_3">nb!</label>
+          </div>
+          <div className="textbox">
+            <input ref={createInput} placeholder="What to do next?" required />
+          </div>
           <button onClick={create}>Create</button>
         </div>
+
         <div>
           <h1>To-Do's</h1>
           <TodoList
