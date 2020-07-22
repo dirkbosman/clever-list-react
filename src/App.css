@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.create {
+  padding: 10px;
+}
+
+.textbox {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
