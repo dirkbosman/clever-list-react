@@ -1,7 +1,4 @@
-// http://localhost:3000/
-
 import React, { useState, useRef } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 // data handling
@@ -14,7 +11,7 @@ class TodoItem {
 
 function App() {
   // starts with an empty array as default and loops over as new items are added.
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState([new TodoItem("test", false)]);
 
   const createInput = useRef(null);
 
@@ -59,11 +56,16 @@ function App() {
     setTodoList([...helper_list, new_todo]);
   };
 
-  /*  const save = (todoItem, new_text) => {
-    const helper_list = copyListAndRemove(todoList, todoItem);
+  const save = (todoItem, new_text) => {
+    const new_list = [...todoList];
+    const index = new_list.indexOf(todoItem);
     const new_todo = new TodoItem(new_text, todoItem.done);
-    setTodoList([...helper_list, new_todo]);
-  };*/
+    setTodoList([
+      ...new_list.slice(0, index),
+      new_todo,
+      ...new_list.slice(index + 1),
+    ]);
+  };
 
   return (
     <div className="App">
@@ -109,6 +111,7 @@ function App() {
             list={todoList}
             remove={remove}
             changeState={changeState}
+            save={save}
           />
         </div>
         <div>
@@ -125,9 +128,9 @@ function App() {
   );
 }
 
-function TodoList({ list, done, remove, changeState }) {
+function TodoList({ list, done, remove, changeState, save }) {
   return (
-    <ul class="entries">
+    <ul className="entries">
       {list
         .filter((item) => item.done === done)
         .map((item, i) => {
@@ -136,6 +139,7 @@ function TodoList({ list, done, remove, changeState }) {
               todoItem={item}
               remove={remove}
               changeState={changeState}
+              save={save}
               key={i}
             />
           );
@@ -144,28 +148,22 @@ function TodoList({ list, done, remove, changeState }) {
   );
 }
 
-function Todo({ todoItem, remove, changeState }) {
-  // saved into an item after created.
-  const v = todoItem.value + "";
-  const [value, setValue] = useState(v);
-
+function Todo({ todoItem, remove, changeState, save }) {
   // takes care of input: document.querySelector("input")
   const input = useRef(null);
-
-  const change = () => {
-    const text = input.current.value;
-    setValue(text);
-    todoItem.value = text;
-  };
-
   return (
     <li>
       <input
         checked={todoItem.done}
-        onClick={() => changeState(todoItem)}
+        onChange={() => changeState(todoItem)}
         type="checkbox"
       />
-      <input ref={input} value={value} onChange={() => change()} type="text" />
+      <input
+        ref={input}
+        value={todoItem.value}
+        onChange={() => save(todoItem, input.current.value)}
+        type="text"
+      />
       <button onClick={() => remove(todoItem)}>remove</button>
     </li>
   );
