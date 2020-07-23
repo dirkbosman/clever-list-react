@@ -17,9 +17,20 @@ class TodoItem {
     return new TodoItem(item.value, item.done, item.priority);
   }
 
-  change(property, newValue) {
-    this[property] = newValue;
-    return this;
+  change(property) {
+    return new To(this, property);
+  }
+}
+
+class To {
+  constructor(obj, property) {
+    this.obj = obj;
+    this.property = property;
+  }
+
+  to(value) {
+    this.obj[this.property] = value;
+    return this.obj;
   }
 }
 
@@ -63,14 +74,14 @@ export default function App() {
   // we only have 1 list
   // change state of specific todo-item via clicking the checkbox
   const changeState = (todoItem) => {
-    const new_todo = TodoItem.copy(todoItem).change("done", !todoItem.done);
+    const new_todo = TodoItem.copy(todoItem).change("done").to(!todoItem.done);
     const list = List.copy(todoList).removeItem(todoItem);
     setTodoList([...list, new_todo]);
   };
 
   const save = (todoItem, new_text) => {
-    const new_todo = TodoItem.copy(todoItem).change("value", new_text);
-    const newList = List.copy(todoList).replace(todoItem, new_todo);
+    const new_todo = TodoItem.copy(todoItem).change("value").to(new_text);
+    const newList = List.copy(todoList).replace(todoItem).with(new_todo);
     setTodoList(newList);
   };
 
