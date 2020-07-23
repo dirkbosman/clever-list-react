@@ -11,24 +11,14 @@ import {
 import copy from "./functional/copy";
 import TodoItem from "./Data";
 
-// generally make a brand new list without the specific item, and over-write old one when time is ready.
 export default function App() {
-  // starts with an empty array as default and loops over as new items are added.
-  const [todoList, setTodoList] = useState([
-    new TodoItem("test", false),
-    // new TodoItem("test", false, "xyz"),
-  ]);
+  const [todoList, setTodoList] = useState([new TodoItem("test", false)]);
 
   const createInput = useRef(null);
 
-  //{current:element} = useRef(null)
-
-  // method to add a create item
   const create = () => {
     const input = createInput.current;
-    // if (input.value.trim() && priority.value != null) {
     if (isInputNotEmpty(input)) {
-      // const new_item = new TodoItem(xyz.value, input.value, false);
       addTodo(input.value);
       emptyInput(input);
     } else {
@@ -41,15 +31,12 @@ export default function App() {
     setTodoList([...todoList, new_item]);
   };
 
-  // total removal from the whole list
   const remove = (todo) => {
     if (confirmDelete()) {
       setTodoList(copy(todoList).removeItem(todo));
     }
   };
 
-  // we only have 1 list
-  // change state of specific todo-item via clicking the checkbox
   const changeState = (todo) => {
     const new_todo = copy(todo).change("done").to(!todo.done);
     const list = copy(todoList).removeItem(todo);
@@ -72,7 +59,6 @@ export default function App() {
       <header>
         <div className="nav-container">
           <h1>
-            {/* <img src={require("../img/clever_logo.png")} alt="logo" /> */}
             <a href="/">Clever</a>
           </h1>
         </div>
@@ -83,34 +69,20 @@ export default function App() {
           <div className="priority">
             <h4>How important is this todo?</h4>
             <form>
-              <input
-                type="radio"
-                name="priority"
-                id="not"
-                value="not"
-                onChange={handleChange}
-                required
-                defaultChecked
-              />
-              <label htmlFor="not">not</label>
-              <input
-                type="radio"
-                name="priority"
-                id="meh"
-                value="meh"
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor="meh">meh</label>
-              <input
-                type="radio"
-                name="priority"
-                id="nb"
-                value="nb"
-                onChange={handleChange}
-                required
-              />
-              <label htmlFor="nb">nb!</label>
+              {["not", "meh", "nb"].map((v, i) => (
+                <span>
+                  <input
+                    type="radio"
+                    name="priority"
+                    id={v}
+                    value={v}
+                    onChange={handleChange}
+                    required
+                    key={i}
+                  />
+                  <label htmlFor="not">{v}</label>
+                </span>
+              ))}
             </form>
           </div>
 
