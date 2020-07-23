@@ -2,23 +2,29 @@ import React, { useState, useRef } from "react";
 import "./App.css";
 
 import TodoList from "./component/TodoList";
+import List from "./functional/List";
+import { isInputNotEmpty, emptyInput } from "./functional/helper";
 
 // data structure to handle our todo-item's data
 class TodoItem {
-  constructor(value, done, priority, todoItem = null) {
-    if (!todoItem) {
-      this.value = value;
-      this.done = done;
-      this.priority = priority;
-    }
+  constructor(value, done, priority) {
+    this.value = value;
+    this.done = done;
+    this.priority = priority;
   }
 
-  copy() {
-    return new TodoItem(this.value, this.done, this.priority);
+  static copy(item) {
+    return new TodoItem(item.value, item.done, item.priority);
+  }
+
+  change(property, newValue) {
+    this[property] = newValue;
+    return this;
   }
 }
 
-function App() {
+// generally make a brand new list without the specific item, and over-write old one when time is ready.
+export default function App() {
   // starts with an empty array as default and loops over as new items are added.
   const [todoList, setTodoList] = useState([
     new TodoItem("test", false),
@@ -31,54 +37,41 @@ function App() {
 
   // method to add a create item
   const create = () => {
-    // refactor below later
     const input = createInput.current;
     // if (input.value.trim() && priority.value != null) {
-    if (input.value.trim()) {
+    if (isInputNotEmpty(input)) {
       // const new_item = new TodoItem(xyz.value, input.value, false);
-      const new_item = new TodoItem(input.value, false);
-      input.value = "";
-      setTodoList([...todoList, new_item]);
+      addTodo(input.value);
+      emptyInput(input);
     } else {
       alert("Do add something!");
     }
   };
 
-  // make a brand new list without the specific item, and over-write old one when time is ready.
-  const copyListAndRemove = (list, item) => {
-    const new_list = [...list];
-    const index = new_list.indexOf(item);
-    new_list.splice(index, 1);
-    return new_list;
+  const addTodo = (value, property) => {
+    const new_item = new TodoItem(value, false, property);
+    setTodoList([...todoList, new_item]);
   };
 
   // total removal from the whole list
   const remove = (todoItem) => {
     if (window.confirm("Sure you wanna delete item?")) {
-      const helper_list = copyListAndRemove(todoList, todoItem);
-      setTodoList(helper_list);
+      setTodoList(List.copy(todoList).removeItem(todoItem));
     }
   };
 
   // we only have 1 list
   // change state of specific todo-item via clicking the checkbox
   const changeState = (todoItem) => {
-    const new_todo = todoItem.copy();
-    new_todo.done = !todoItem.done;
-    const helper_list = copyListAndRemove(todoList, todoItem);
-    setTodoList([...helper_list, new_todo]);
+    const new_todo = TodoItem.copy(todoItem).change("done", !todoItem.done);
+    const list = List.copy(todoList).removeItem(todoItem);
+    setTodoList([...list, new_todo]);
   };
 
   const save = (todoItem, new_text) => {
-    const new_list = [...todoList];
-    const index = new_list.indexOf(todoItem);
-    const new_todo = todoItem.copy();
-    new_todo.value = new_text;
-    setTodoList([
-      ...new_list.slice(0, index),
-      new_todo,
-      ...new_list.slice(index + 1),
-    ]);
+    const new_todo = TodoItem.copy(todoItem).change("value", new_text);
+    const newList = List.copy(todoList).replace(todoItem, new_todo);
+    setTodoList(newList);
   };
 
   const [priority, setPriority] = useState("");
@@ -163,5 +156,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
