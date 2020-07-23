@@ -9,3 +9,7 @@ export function isInputEmpty(input) {
 export function emptyInput(input) {
   input.value = "";
 }
+
+export function confirmDelete() {
+  return window.confirm("Sure you wanna delete item?");
+}
