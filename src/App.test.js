@@ -7,7 +7,7 @@ import { shallow, mount } from "enzyme";
 describe("App", () => {
   const app = mount(<App />);
   test("exist", () => {
-    expect(app.find(".create > input").exists()).toBe(true);
+    expect(app.find(".textbox > input").exists()).toBe(true);
     expect(app.find(".create > button").exists()).toBe(true);
     expect(
       app
@@ -29,7 +29,7 @@ describe("App", () => {
     expect(app.find("Todo").exists()).toBe(true);
 
     app
-      .find(".create > input")
+      .find(".textbox > input")
       .simulate("change", { target: { value: "new todo" } });
 
     app.find(".create > button").simulate("click");

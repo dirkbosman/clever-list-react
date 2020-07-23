@@ -103,7 +103,7 @@ function App() {
                 required
                 defaultChecked
               />
-              <label for="not">not</label>
+              <label htmlFor="not">not</label>
               <input
                 type="radio"
                 name="priority"
@@ -112,7 +112,7 @@ function App() {
                 onChange={handleChange}
                 required
               />
-              <label for="meh">meh</label>
+              <label htmlFor="meh">meh</label>
               <input
                 type="radio"
                 name="priority"
@@ -121,7 +121,7 @@ function App() {
                 onChange={handleChange}
                 required
               />
-              <label for="nb">nb!</label>
+              <label htmlFor="nb">nb!</label>
             </form>
           </div>
 
@@ -177,7 +177,6 @@ function TodoList({ list, done, remove, changeState, save }) {
 
 function Todo({ todoItem, remove, changeState, save }) {
   // takes care of input: document.querySelector("input")
-  const input = useRef(null);
   return (
     <li>
       <input
@@ -186,9 +185,8 @@ function Todo({ todoItem, remove, changeState, save }) {
         type="checkbox"
       />
       <input
-        ref={input}
         value={todoItem.value}
-        onChange={() => save(todoItem, input.current.value)}
+        onChange={(e) => save(todoItem, e.target.value)}
         type="text"
       />
       <button onClick={() => remove(todoItem)}>remove</button>
