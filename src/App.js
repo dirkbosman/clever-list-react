@@ -12,22 +12,35 @@ import copy from "./functional/copy";
 import TodoItem from "./Data";
 
 export default function App() {
-  const [todoList, setTodoList] = useState([new TodoItem("test", false)]);
+  const [todoList, setTodoList] = useState([
+    new TodoItem("item_1", false, "a"),
+    new TodoItem("item_2", true, "b"),
+    new TodoItem("item_3", true, "c"),
+    new TodoItem("item_4", false, "a"),
+    new TodoItem("item_5", true, "b"),
+    new TodoItem("item_6", false, "c"),
+    new TodoItem("item_7", true, "b"),
+    new TodoItem("item_8", true, "a"),
+    new TodoItem("item_9", false, "c"),
+  ]);
+
+  const [priority, setPriority] = useState("a");
 
   const createInput = useRef(null);
 
   const create = () => {
     const input = createInput.current;
     if (isInputNotEmpty(input)) {
-      addTodo(input.value);
+      addTodo(input.value, priority);
       emptyInput(input);
+      setPriority("a");
     } else {
       alert("Do add something!");
     }
   };
 
-  const addTodo = (value, property) => {
-    const new_item = new TodoItem(value, false, property);
+  const addTodo = (value, priority) => {
+    const new_item = new TodoItem(value, false, priority);
     setTodoList([...todoList, new_item]);
   };
 
@@ -49,7 +62,6 @@ export default function App() {
     setTodoList(newList);
   };
 
-  const [priority, setPriority] = useState("");
   const handleChange = (e) => {
     setPriority(e.target.value);
   };
@@ -69,7 +81,7 @@ export default function App() {
           <div className="priority">
             <h4>How important is this todo?</h4>
             <form>
-              {["not", "meh", "nb"].map((v, i) => (
+              {["a", "b", "c"].map((v, i) => (
                 <span>
                   <input
                     type="radio"
@@ -77,8 +89,9 @@ export default function App() {
                     id={v}
                     value={v}
                     onChange={handleChange}
-                    required
                     key={i}
+                    checked={v === priority ? true : false}
+                    required
                   />
                   <label htmlFor="not">{v}</label>
                 </span>

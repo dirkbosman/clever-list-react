@@ -3,19 +3,21 @@ import TodoItem from "../Data";
 export default function copy(item) {
   if (item instanceof TodoItem) {
     return new Change(item.copy());
+  } else {
+    return new List(item);
   }
-  function List() {
-    const list = [...item];
+}
 
-    this.removeItem = getRemoveItem(list);
+function List(item) {
+  const list = [...item];
 
-    this.replace = getReplace(list);
+  this.removeItem = getRemoveItem(list);
 
-    this.get = () => {
-      return list;
-    };
-  }
-  return new List();
+  this.replace = getReplace(list);
+
+  this.get = () => {
+    return list;
+  };
 }
 
 function getRemoveItem(list) {
