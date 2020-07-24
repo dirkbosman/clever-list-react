@@ -103,14 +103,14 @@ export default function App() {
           </div>
 
           <div className="textbox">
-            <input
+            <input className="textbox"
               ref={createInput}
               name="creationInput"
               placeholder="What to do next?"
               required
             />
           </div>
-          <button onClick={create}>Create</button>
+          <button onClick={create}>Add New</button>
         </div>
 
         <div>
