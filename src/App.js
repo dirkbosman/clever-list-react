@@ -18,8 +18,10 @@ export default function App() {
 
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem("todoList"));
-    const todoitemlist = storedTasks.map((e) => turnToDoItem(e));
-    setTodoList(todoitemlist);
+    if (storedTasks) {
+      const todoitemlist = storedTasks.map((e) => turnToDoItem(e));
+      setTodoList(todoitemlist);
+    }
   }, []);
 
   useEffect(() => {
