@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 import TodoList from "./component/TodoList";
@@ -9,12 +9,22 @@ import {
 } from "./functional/helper";
 
 import copy from "./functional/copy";
-import TodoItem from "./Data";
+import TodoItem, { turnToDoItem } from "./Data";
 
 export default function App() {
   const [todoList, setTodoList] = useState([]);
   // const [inputText,]
   const [priority, setPriority] = useState("a");
+
+  useEffect(() => {
+    const storedTasks = JSON.parse(localStorage.getItem("todoList"));
+    const todoitemlist = storedTasks.map((e) => turnToDoItem(e));
+    setTodoList(todoitemlist);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
 
   const createInput = useRef(null);
 

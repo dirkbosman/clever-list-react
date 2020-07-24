@@ -9,3 +9,6 @@ export default class TodoItem {
     return new TodoItem(this.value, this.done, this.priority);
   }
 }
+export function turnToDoItem(json) {
+  return new TodoItem(json.value, json.done, json.priority);
+}
