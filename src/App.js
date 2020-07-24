@@ -12,21 +12,15 @@ import copy from "./functional/copy";
 import TodoItem from "./Data";
 
 export default function App() {
-  const [todoList, setTodoList] = useState([
-    new TodoItem("item_1", false, "a"),
-    new TodoItem("item_2", true, "b"),
-    new TodoItem("item_3", true, "c"),
-    new TodoItem("item_4", false, "a"),
-    new TodoItem("item_5", true, "b"),
-    new TodoItem("item_6", false, "c"),
-    new TodoItem("item_7", true, "b"),
-    new TodoItem("item_8", true, "a"),
-    new TodoItem("item_9", false, "c"),
-  ]);
-
+  const [todoList, setTodoList] = useState([]);
+  // const [inputText,]
   const [priority, setPriority] = useState("a");
 
   const createInput = useRef(null);
+
+  const handleChange = (e) => {
+    setPriority(e.target.value);
+  };
 
   const create = () => {
     const input = createInput.current;
@@ -46,7 +40,8 @@ export default function App() {
 
   const remove = (todo) => {
     if (confirmDelete()) {
-      setTodoList(copy(todoList).removeItem(todo));
+      const new_list = copy(todoList).removeItem(todo);
+      setTodoList(new_list);
     }
   };
 
@@ -60,10 +55,6 @@ export default function App() {
     const new_todo = copy(todo).change("value").to(new_text);
     const newList = copy(todoList).replace(todo).with(new_todo);
     setTodoList(newList);
-  };
-
-  const handleChange = (e) => {
-    setPriority(e.target.value);
   };
 
   return (
@@ -100,7 +91,12 @@ export default function App() {
           </div>
 
           <div className="textbox">
-            <input ref={createInput} placeholder="What to do next?" required />
+            <input
+              ref={createInput}
+              name="creationInput"
+              placeholder="What to do next?"
+              required
+            />
           </div>
           <button onClick={create}>Create</button>
         </div>
