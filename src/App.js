@@ -69,6 +69,78 @@ export default function App() {
     setTodoList(newList);
   };
 
+  class HideAndShowDivOnClick extends React.Component {
+    state = {
+      showDiv: false,
+    };
+
+    onButtonPress(event) {
+      const id = event.target.innerHTML;
+      console.log(id);
+      const quickItem = document.getElementsByClassName("textbox");
+      quickItem.innerHTML = id;
+    }
+
+    render() {
+      const { showDiv } = this.state;
+      return (
+        <div>
+          <button onClick={() => this.setState({ showDiv: !showDiv })}>
+            {showDiv ? "hide" : "show"}
+          </button>
+          {showDiv && (
+            <div id="myDropDown" class="dropdownContent">
+              <div className="list1">
+                <h4>Shopping</h4>
+                <ul>
+                  <li>
+                    <button onClick={this.onButtonPress}>ASD</button>
+                  </li>
+                  <li>Milk</li>
+                  <li>Milk</li>
+                  <li>Milk</li>
+                </ul>
+              </div>
+              <div className="list2">
+                <h4>Personal</h4>
+                <ul>
+                  <li>
+                    <button onClick={this.onButtonPress}>ASD</button>
+                  </li>
+                  <li>Milk</li>
+                  <li>Milk</li>
+                  <li>Milk</li>
+                </ul>
+              </div>
+              <div className="list3">
+                <h4>Work</h4>
+                <ul>
+                  <li>
+                    <button onClick={this.onButtonPress}>ASD</button>
+                  </li>
+                  <li>Milk</li>
+                  <li>Milk</li>
+                  <li>Milk</li>
+                </ul>
+              </div>
+              <div className="list4">
+                <h4>General</h4>
+                <ul>
+                  <li>
+                    <button onClick={this.onButtonPress}>ASD</button>
+                  </li>
+                  <li>Milk</li>
+                  <li>Milk</li>
+                  <li>Milk</li>
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+  }
+
   return (
     <div className="App">
       <header>
@@ -81,6 +153,7 @@ export default function App() {
       <div className="main">
         <div className="create" id={priority}>
           <h1>New To-do</h1>
+          <HideAndShowDivOnClick />
           <div className="priority">
             <h4>How important is this todo?</h4>
             <form>
@@ -101,9 +174,9 @@ export default function App() {
               ))}
             </form>
           </div>
-
           <div className="textbox">
-            <input className="textbox"
+            <input
+              className="textbox"
               ref={createInput}
               name="creationInput"
               placeholder="What to do next?"
