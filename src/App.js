@@ -8,6 +8,8 @@ import {
   confirmDelete,
 } from "./functional/helper";
 
+import Confirm from "./component/Confirm";
+
 import copy from "./functional/copy";
 import TodoItem, { turnToDoItem } from "./Data";
 
@@ -34,14 +36,15 @@ export default function App() {
     setPriority(e.target.value);
   };
 
-  const create = () => {
+  const create = (e) => {
     const input = createInput.current;
     if (isInputNotEmpty(input)) {
       addTodo(input.value, priority);
       emptyInput(input);
       setPriority("a");
+      e.preventDefault();
     } else {
-      alert("Do add something!");
+      emptyInput(input);
     }
   };
 
@@ -51,10 +54,14 @@ export default function App() {
   };
 
   const remove = (todo) => {
-    if (confirmDelete()) {
-      const new_list = copy(todoList).removeItem(todo);
-      setTodoList(new_list);
-    }
+    Confirm("Are you sure?", "That you want to delete the todo?", () => {
+      doRemove(todo);
+    });
+  };
+
+  const doRemove = (todo) => {
+    const new_list = copy(todoList).removeItem(todo);
+    setTodoList(new_list);
   };
 
   const changeState = (todo) => {
@@ -175,15 +182,17 @@ export default function App() {
             </form>
           </div>
           <div className="textbox">
-            <input
-              className="textbox"
-              ref={createInput}
-              name="creationInput"
-              placeholder="What to do next?"
-              required
-            />
+            <form>
+              <input
+                className="textbox"
+                ref={createInput}
+                name="creationInput"
+                placeholder="What to do next?"
+                required
+              />
+              <input type="submit" onClick={create} value="addNew" />
+            </form>
           </div>
-          <button onClick={create}>Add New</button>
         </div>
 
         <div>
