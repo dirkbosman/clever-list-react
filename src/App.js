@@ -190,7 +190,9 @@ export default function App() {
                 placeholder="What to do next?"
                 required
               />
-              <input type="submit" onClick={create} value="addNew" />
+              <button type="submit" onClick={create}>
+                add new{" "}
+              </button>
             </form>
           </div>
         </div>

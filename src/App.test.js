@@ -8,8 +8,8 @@ import { shallow, mount } from "enzyme";
 describe("App", () => {
   const app = mount(<App />);
   test("exist", () => {
-    expect(app.find(".textbox > input").exists()).toBe(true);
-    expect(app.find(".create > button").exists()).toBe(true);
+    expect(app.find(".textbox input").exists()).toBe(true);
+    expect(app.find(".textbox button").exists()).toBe(true);
     expect(
       app
         .findWhere((n) => {
@@ -29,9 +29,9 @@ describe("App", () => {
   test("create new todo", () => {
     expect(app.find("Todo").exists()).toBe(false);
 
-    app.find(".textbox > input").instance().value = "new Todo";
+    app.find(".textbox input").instance().value = "new Todo";
 
-    app.find(".create > button").simulate("click");
+    app.find(".textbox button").simulate("click");
 
     const Todo = app.find("Todo");
     expect(Todo.exists()).toBe(true);
