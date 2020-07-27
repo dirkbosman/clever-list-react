@@ -68,6 +68,10 @@ export default function App() {
     const newList = copy(todoList).replace(todo).with(new_todo);
     setTodoList(newList);
   };
+  // const(line,setLine)= useState(false);
+  // const cutIt=()=>{
+  //   setLine(true);
+  // };
 
   return (
     <div className="App">
@@ -110,7 +114,7 @@ export default function App() {
               required
             />
           </div>
-          <button onClick={create}>Add New</button>
+          <button className="addNew" onClick={create}>Add New</button>
         </div>
 
         <div>
