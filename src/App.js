@@ -1,9 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "./App.css";
-import "react-tabs/style/react-tabs.css";
-import Quicklist from "./QuickList";
-
+import HideAndShowDivOnClick from "./component/QuickList";
 import TodoList from "./component/TodoList";
 import {
   isInputNotEmpty,
@@ -18,7 +15,6 @@ import TodoItem, { turnToDoItem } from "./Data";
 
 export default function App() {
   const [todoList, setTodoList] = useState([]);
-  // const [inputText,]
   const [priority, setPriority] = useState("a");
 
   useEffect(() => {
@@ -78,63 +74,6 @@ export default function App() {
     const newList = copy(todoList).replace(todo).with(new_todo);
     setTodoList(newList);
   };
-  // const(line,setLine)= useState(false);
-  // const cutIt=()=>{
-  //   setLine(true);
-  // };
-
-  class HideAndShowDivOnClick extends React.Component {
-    state = {
-      showDiv: false,
-    };
-
-    onButtonPress(event) {
-      const id = event.target.innerHTML;
-      // console.log(id);
-      const quickItem = createInput.current;
-      quickItem.value = id;
-    }
-
-    render() {
-      const { showDiv } = this.state;
-      return (
-        <div className="quicklist-container">
-          <button
-            className="quicklist"
-            onClick={() => this.setState({ showDiv: !showDiv })}
-          >
-            {showDiv ? "Hide Quicklist" : "Show Quicklist"}
-          </button>
-          {showDiv && (
-            <Tabs>
-              <TabList>
-                {Object.keys(Quicklist).map((v, i) => (
-                  <Tab key={i}>{v}</Tab>
-                ))}
-              </TabList>
-              {Object.keys(Quicklist).map((v, index) => (
-                <TabPanel key={index}>
-                  <h3>{v}</h3>
-                  <ul className="quicklist-content">
-                    {Quicklist[v].map((item, itemIndex) => (
-                      <li className="quicklist-item" key={itemIndex}>
-                        <button
-                          className="quicklist-item-btn"
-                          onClick={this.onButtonPress}
-                        >
-                          {item}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </TabPanel>
-              ))}
-            </Tabs>
-          )}
-        </div>
-      );
-    }
-  }
 
   return (
     <div className="App">
@@ -148,7 +87,7 @@ export default function App() {
       <div className="main">
         <div className="create" id={priority}>
           <h1>New To-do</h1>
-          <HideAndShowDivOnClick />
+          <HideAndShowDivOnClick createInput={createInput} />
           <div className="priority">
             <h4>Priority?</h4>
             <form>
