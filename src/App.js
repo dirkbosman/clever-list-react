@@ -4,12 +4,10 @@ import "./App.css";
 import "react-tabs/style/react-tabs.css";
 import Quicklist from "./QuickList";
 
-import TodoList from "./component/TodoList";
-import {
-  isInputNotEmpty,
-  emptyInput,
-  confirmDelete,
-} from "./functional/helper";
+import TodoListComponent from "./component/TodoList";
+import { isInputNotEmpty, emptyInput } from "./functional/helper";
+
+import SelectPriority from "./component/SelectPriority";
 
 import Confirm from "./component/Confirm";
 
@@ -19,7 +17,7 @@ import TodoItem, { turnToDoItem } from "./Data";
 export default function App() {
   const [todoList, setTodoList] = useState([]);
   // const [inputText,]
-  const [priority, setPriority] = useState("a");
+  const [priority, setPriority] = useState("1");
 
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem("todoList"));
@@ -44,7 +42,7 @@ export default function App() {
     if (isInputNotEmpty(input)) {
       addTodo(input.value, priority);
       emptyInput(input);
-      setPriority("a");
+      setPriority("1");
       e.preventDefault();
     } else {
       emptyInput(input);
@@ -77,6 +75,12 @@ export default function App() {
     const new_todo = copy(todo).change("value").to(new_text);
     const newList = copy(todoList).replace(todo).with(new_todo);
     setTodoList(newList);
+  };
+
+  const todoFunctions = {
+    remove: remove,
+    changeState: changeState,
+    save: save,
   };
   // const(line,setLine)= useState(false);
   // const cutIt=()=>{
@@ -146,29 +150,14 @@ export default function App() {
         </div>
       </header>
       <div className="main">
-        <div className="create" id={priority}>
+        <div className="create" id={"id" + priority}>
           <h1>New To-do</h1>
           <HideAndShowDivOnClick />
-          <div className="priority">
-            <h4>Priority?</h4>
-            <form>
-              {["a", "b", "c"].map((v, i) => (
-                <span>
-                  <input
-                    type="radio"
-                    name="priority"
-                    id={v}
-                    value={v}
-                    onChange={handleChange}
-                    key={i}
-                    checked={v === priority ? true : false}
-                    required
-                  />
-                  <label htmlFor="not">{v}</label>
-                </span>
-              ))}
-            </form>
-          </div>
+          <SelectPriority
+            names={["low", "normal", "high"]}
+            priority={priority}
+            handleChange={handleChange}
+          />
           <div className="textbox">
             <form>
               <input
@@ -186,23 +175,17 @@ export default function App() {
         </div>
 
         <div>
-          <h1>To-Do's</h1>
-          <TodoList
+          <TodoListComponent
             done={false}
             list={todoList}
-            remove={remove}
-            changeState={changeState}
-            save={save}
+            todoFunctions={todoFunctions}
           />
         </div>
         <div>
-          <h1>Done</h1>
-          <TodoList
+          <TodoListComponent
             done={true}
             list={todoList}
-            remove={remove}
-            changeState={changeState}
-            save={save}
+            todoFunctions={todoFunctions}
           />
         </div>
       </div>
