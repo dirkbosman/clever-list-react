@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 
 // (a,b) => return a.priority.keyCode()-b.priority.keyCode();
 
@@ -6,9 +6,9 @@ export default function TodoList({ list, done, remove, changeState, save }) {
   return (
     <ul className="entries">
       {list
-        .sort((a, b) => a.priority.charCodeAt(0) - b.priority.charCodeAt(0))
-        .reverse()
         .filter((item) => item.done === done)
+        .sort((a, b) => b.priority.charCodeAt(0) - a.priority.charCodeAt(0))
+
         .map((item, i) => {
           return (
             <Todo
