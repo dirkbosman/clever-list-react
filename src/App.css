@@ -12,7 +12,7 @@ body {
   pointer-events: none;
 }
 
-.dropdownContent {
+.quicklist-content {
   display: flex;
   flex-direction: row;
   align-items: center;
