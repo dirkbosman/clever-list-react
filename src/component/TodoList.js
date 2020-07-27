@@ -4,7 +4,7 @@ import React from "react";
 
 export default ({ list, done, todoFunctions }) => (
   <div>
-    <h1> {(!done && "To-Do's") || (done && "done")}</h1>
+    <h2> {(!done && "To-Do's") || (done && "Done")}</h2>
     <TodoList done={done} list={list} todoFunctions={todoFunctions} />
   </div>
 );

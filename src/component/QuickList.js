@@ -20,12 +20,6 @@ class HideAndShowDivOnClick extends React.Component {
     const { showDiv } = this.state;
     return (
       <div className="quicklist-container">
-        <button
-          className="quicklist"
-          onClick={() => this.setState({ showDiv: !showDiv })}
-        >
-          {showDiv ? "Hide Quicklist" : "Show Quicklist"}
-        </button>
         {showDiv && (
           <Tabs>
             <TabList>
@@ -35,7 +29,6 @@ class HideAndShowDivOnClick extends React.Component {
             </TabList>
             {Object.keys(QuickListData).map((v, index) => (
               <TabPanel key={index}>
-                <h3>{v}</h3>
                 <ul className="quicklist-content">
                   {QuickListData[v].map((item, itemIndex) => (
                     <li className="quicklist-item" key={itemIndex}>
@@ -52,6 +45,13 @@ class HideAndShowDivOnClick extends React.Component {
             ))}
           </Tabs>
         )}
+
+        <button
+          className="quicklist"
+          onClick={() => this.setState({ showDiv: !showDiv })}
+        >
+          {showDiv ? "Hide" : "Quicklist"}
+        </button>
       </div>
     );
   }

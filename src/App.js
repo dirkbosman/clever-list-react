@@ -14,7 +14,6 @@ import TodoItem, { turnToDoItem } from "./Data";
 
 export default function App() {
   const [todoList, setTodoList] = useState([]);
-  // const [inputText,]
   const [priority, setPriority] = useState("1");
 
   useEffect(() => {
@@ -85,14 +84,12 @@ export default function App() {
     <div className="App">
       <header>
         <div className="nav-container">
-          <h1>
-            <a href="/">Clever</a>
-          </h1>
+          <h1>* Clever *</h1>
         </div>
       </header>
       <div className="main">
         <div className="create" id={"id" + priority}>
-          <h1>New To-do</h1>
+          <h2>New To-do</h2>
           <HideAndShowDivOnClick createInput={createInput} />
           <SelectPriority
             names={["low", "normal", "high"]}
@@ -109,7 +106,7 @@ export default function App() {
                 required
               />
               <button className="submit" type="submit" onClick={create}>
-                add new{" "}
+                add{" "}
               </button>
             </form>
           </div>
