@@ -1,0 +1,15 @@
+.danger {
+  background-color: red;
+}
+
+.safe {
+  background-color: green;
+}
+
+.button {
+  text-transform: uppercase;
+}
+
+.form > * {
+  margin-right: 10px;
+}
