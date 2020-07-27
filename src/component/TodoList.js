@@ -25,7 +25,8 @@ export default function TodoList({ list, done, remove, changeState, save }) {
 }
 
 function Todo({ todoItem, remove, changeState, save }) {
-  // takes care of input: document.querySelector("input")
+  const cut = todoItem.done ? "cut" : "not-cut";
+ // takes care of input: document.querySelector("input")
   return (
     <li id={todoItem.priority}>
       <input
@@ -33,12 +34,12 @@ function Todo({ todoItem, remove, changeState, save }) {
         onChange={() => changeState(todoItem)}
         type="checkbox"
       />
-      <input
+      <input className={"todo-text-input " + cut}
         value={todoItem.value}
         onChange={(e) => save(todoItem, e.target.value)}
         type="text"
       />
-      <button onClick={() => remove(todoItem)}>remove</button>
+      <button className="todo-button" onClick={() => remove(todoItem)}>remove</button>
     </li>
   );
 }
