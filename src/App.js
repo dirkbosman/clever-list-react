@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "./App.css";
+import "react-tabs/style/react-tabs.css";
 
 import TodoList from "./component/TodoList";
 import {
@@ -83,9 +85,9 @@ export default function App() {
 
     onButtonPress(event) {
       const id = event.target.innerHTML;
-      console.log(id);
-      const quickItem = document.getElementsByClassName("textbox");
-      quickItem.innerHTML = id;
+      // console.log(id);
+      const quickItem = createInput.current;
+      quickItem.value = id;
     }
 
     render() {
@@ -96,52 +98,56 @@ export default function App() {
             {showDiv ? "hide" : "show"}
           </button>
           {showDiv && (
-            <div id="myDropDown" class="dropdownContent">
-              <div className="list1">
-                <h4>Shopping</h4>
-                <ul>
+            <Tabs>
+              <TabList>
+                <Tab>Food</Tab>
+                <Tab>Personal</Tab>
+                <Tab>Exercise</Tab>
+                <Tab>Work</Tab>
+                <Tab>General</Tab>
+              </TabList>
+              <TabPanel>
+                <h3>Food</h3>
+                <ul className="dropdownContent">
                   <li>
-                    <button onClick={this.onButtonPress}>ASD</button>
+                    <button onClick={this.onButtonPress}>🐄 milk</button>
                   </li>
-                  <li>Milk</li>
-                  <li>Milk</li>
-                  <li>Milk</li>
-                </ul>
-              </div>
-              <div className="list2">
-                <h4>Personal</h4>
-                <ul>
                   <li>
-                    <button onClick={this.onButtonPress}>ASD</button>
+                    <button onClick={this.onButtonPress}>🥑 avocado</button>
                   </li>
-                  <li>Milk</li>
-                  <li>Milk</li>
-                  <li>Milk</li>
-                </ul>
-              </div>
-              <div className="list3">
-                <h4>Work</h4>
-                <ul>
                   <li>
-                    <button onClick={this.onButtonPress}>ASD</button>
+                    <button onClick={this.onButtonPress}>🍞 bread</button>
                   </li>
-                  <li>Milk</li>
-                  <li>Milk</li>
-                  <li>Milk</li>
-                </ul>
-              </div>
-              <div className="list4">
-                <h4>General</h4>
-                <ul>
                   <li>
-                    <button onClick={this.onButtonPress}>ASD</button>
+                    <button onClick={this.onButtonPress}>🥓 bacon</button>
                   </li>
-                  <li>Milk</li>
-                  <li>Milk</li>
-                  <li>Milk</li>
+                  <li>
+                    <button onClick={this.onButtonPress}>🥦 broccoli</button>
+                  </li>
+                  <li>
+                    <button onClick={this.onButtonPress}>🍳 eggs</button>
+                  </li>
+                  <li>
+                    <button onClick={this.onButtonPress}>🥗 salad</button>
+                  </li>
+                  <li>
+                    <button onClick={this.onButtonPress}>🍝 spaghetti</button>
+                  </li>
                 </ul>
-              </div>
-            </div>
+              </TabPanel>
+              <TabPanel>
+                <h3>Personal</h3>
+              </TabPanel>
+              <TabPanel>
+                <h3>Exercise</h3>
+              </TabPanel>
+              <TabPanel>
+                <h3>Work</h3>
+              </TabPanel>
+              <TabPanel>
+                <h3>General</h3>
+              </TabPanel>
+            </Tabs>
           )}
         </div>
       );
@@ -162,7 +168,7 @@ export default function App() {
           <h1>New To-do</h1>
           <HideAndShowDivOnClick />
           <div className="priority">
-            <h4>How important is this todo?</h4>
+            <h4>Importance?</h4>
             <form>
               {["a", "b", "c"].map((v, i) => (
                 <span>
