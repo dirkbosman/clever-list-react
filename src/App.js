@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "./App.css";
 import "react-tabs/style/react-tabs.css";
+import Quicklist from "./QuickList";
 
 import TodoList from "./component/TodoList";
 import {
@@ -93,53 +94,22 @@ export default function App() {
           {showDiv && (
             <Tabs>
               <TabList>
-                <Tab>Food</Tab>
-                <Tab>Personal</Tab>
-                <Tab>Exercise</Tab>
-                <Tab>Work</Tab>
-                <Tab>General</Tab>
+                {Object.keys(Quicklist).map((v, i) => (
+                  <Tab key={i}>{v}</Tab>
+                ))}
               </TabList>
-              <TabPanel>
-                <h3>Food</h3>
-                <ul className="dropdownContent">
-                  <li>
-                    <button onClick={this.onButtonPress}>🐄 milk</button>
-                  </li>
-                  <li>
-                    <button onClick={this.onButtonPress}>🥑 avocado</button>
-                  </li>
-                  <li>
-                    <button onClick={this.onButtonPress}>🍞 bread</button>
-                  </li>
-                  <li>
-                    <button onClick={this.onButtonPress}>🥓 bacon</button>
-                  </li>
-                  <li>
-                    <button onClick={this.onButtonPress}>🥦 broccoli</button>
-                  </li>
-                  <li>
-                    <button onClick={this.onButtonPress}>🍳 eggs</button>
-                  </li>
-                  <li>
-                    <button onClick={this.onButtonPress}>🥗 salad</button>
-                  </li>
-                  <li>
-                    <button onClick={this.onButtonPress}>🍝 spaghetti</button>
-                  </li>
-                </ul>
-              </TabPanel>
-              <TabPanel>
-                <h3>Personal</h3>
-              </TabPanel>
-              <TabPanel>
-                <h3>Exercise</h3>
-              </TabPanel>
-              <TabPanel>
-                <h3>Work</h3>
-              </TabPanel>
-              <TabPanel>
-                <h3>General</h3>
-              </TabPanel>
+              {Object.keys(Quicklist).map((v, index) => (
+                <TabPanel key={index}>
+                  <h3>{v}</h3>
+                  <ul className="dropdownContent">
+                    {Quicklist[v].map((item, itemIndex) => (
+                      <li key={itemIndex}>
+                        <button onClick={this.onButtonPress}>{item}</button>
+                      </li>
+                    ))}
+                  </ul>
+                </TabPanel>
+              ))}
             </Tabs>
           )}
         </div>
