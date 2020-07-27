@@ -78,10 +78,7 @@ export default function App() {
     const newList = copy(todoList).replace(todo).with(new_todo);
     setTodoList(newList);
   };
-  // const(line,setLine)= useState(false);
-  // const cutIt=()=>{
-  //   setLine(true);
-  // };
+  
 
   class HideAndShowDivOnClick extends React.Component {
     state = {
