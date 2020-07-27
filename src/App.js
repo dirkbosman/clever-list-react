@@ -98,9 +98,12 @@ export default function App() {
     render() {
       const { showDiv } = this.state;
       return (
-        <div>
-          <button onClick={() => this.setState({ showDiv: !showDiv })}>
-            {showDiv ? "hide" : "show"}
+        <div className="quicklist-container">
+          <button
+            className="quicklist"
+            onClick={() => this.setState({ showDiv: !showDiv })}
+          >
+            {showDiv ? "Hide Quicklist" : "Show Quicklist"}
           </button>
           {showDiv && (
             <Tabs>
@@ -112,10 +115,15 @@ export default function App() {
               {Object.keys(Quicklist).map((v, index) => (
                 <TabPanel key={index}>
                   <h3>{v}</h3>
-                  <ul className="dropdownContent">
+                  <ul className="quicklist-content">
                     {Quicklist[v].map((item, itemIndex) => (
-                      <li key={itemIndex}>
-                        <button onClick={this.onButtonPress}>{item}</button>
+                      <li className="quicklist-item" key={itemIndex}>
+                        <button
+                          className="quicklist-item-btn"
+                          onClick={this.onButtonPress}
+                        >
+                          {item}
+                        </button>
                       </li>
                     ))}
                   </ul>
