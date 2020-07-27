@@ -71,6 +71,10 @@ export default function App() {
     const newList = copy(todoList).replace(todo).with(new_todo);
     setTodoList(newList);
   };
+  // const(line,setLine)= useState(false);
+  // const cutIt=()=>{
+  //   setLine(true);
+  // };
 
   class HideAndShowDivOnClick extends React.Component {
     state = {
@@ -159,7 +163,7 @@ export default function App() {
               required
             />
           </div>
-          <button onClick={create}>Add New</button>
+          <button className="addNew" onClick={create}>Add New</button>
         </div>
 
         <div>
