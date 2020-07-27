@@ -1,7 +1,5 @@
 import React from "react";
 
-// (a,b) => return a.priority.keyCode()-b.priority.keyCode();
-
 export default function TodoList({ list, done, remove, changeState, save }) {
   return (
     <ul className="entries">
@@ -26,7 +24,7 @@ export default function TodoList({ list, done, remove, changeState, save }) {
 
 function Todo({ todoItem, remove, changeState, save }) {
   const cut = todoItem.done ? "cut" : "not-cut";
- // takes care of input: document.querySelector("input")
+  // takes care of input: document.querySelector("input")
   return (
     <li id={todoItem.priority}>
       <input
@@ -34,12 +32,15 @@ function Todo({ todoItem, remove, changeState, save }) {
         onChange={() => changeState(todoItem)}
         type="checkbox"
       />
-      <input className={"todo-text-input " + cut}
+      <input
+        className={"todo-text-input " + cut}
         value={todoItem.value}
         onChange={(e) => save(todoItem, e.target.value)}
         type="text"
       />
-      <button className="todo-button" onClick={() => remove(todoItem)}>remove</button>
+      <button className="todo-button" onClick={() => remove(todoItem)}>
+        remove
+      </button>
     </li>
   );
 }
