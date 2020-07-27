@@ -3,6 +3,8 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import QuickListData from "../Data/QuickListData";
 
+import "react-tabs/style/react-tabs.css";
+
 class HideAndShowDivOnClick extends React.Component {
   state = {
     showDiv: false,

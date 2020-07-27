@@ -22,7 +22,6 @@ body {
 }
 
 .priority {
-  border: 1px solid black;
   padding: 20px;
 }
 
@@ -96,15 +95,15 @@ body {
   margin: 0;
 }
 
-#a {
+#id0 {
   background-color: #ddca67;
 }
 
-#b {
+#id1 {
   background-color: #e39853;
 }
 
-#c {
+#id2 {
   background-color: #e79880;
 }
 
