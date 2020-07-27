@@ -142,7 +142,7 @@ export default function App() {
           <h1>New To-do</h1>
           <HideAndShowDivOnClick />
           <div className="priority">
-            <h4>Importance?</h4>
+            <h4>Priority?</h4>
             <form>
               {["a", "b", "c"].map((v, i) => (
                 <span>
@@ -170,7 +170,7 @@ export default function App() {
                 placeholder="What to do next?"
                 required
               />
-              <button type="submit" onClick={create}>
+              <button className="submit" type="submit" onClick={create}>
                 add new{" "}
               </button>
             </form>
