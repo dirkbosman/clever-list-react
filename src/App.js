@@ -1,15 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "./App.css";
-import "react-tabs/style/react-tabs.css";
-import Quicklist from "./QuickList";
 
-import TodoList from "./component/TodoList";
-import {
-  isInputNotEmpty,
-  emptyInput,
-  confirmDelete,
-} from "./functional/helper";
+import TodoListComponent from "./component/TodoList";
+import { isInputNotEmpty, emptyInput } from "./functional/helper";
+
+import SelectPriority from "./component/SelectPriority";
+import HideAndShowDivOnClick from "./component/QuickList";
 
 import Confirm from "./component/Confirm";
 
@@ -19,7 +15,7 @@ import TodoItem, { turnToDoItem } from "./Data";
 export default function App() {
   const [todoList, setTodoList] = useState([]);
   // const [inputText,]
-  const [priority, setPriority] = useState("a");
+  const [priority, setPriority] = useState("1");
 
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem("todoList"));
@@ -44,7 +40,7 @@ export default function App() {
     if (isInputNotEmpty(input)) {
       addTodo(input.value, priority);
       emptyInput(input);
-      setPriority("a");
+      setPriority("1");
       e.preventDefault();
     } else {
       emptyInput(input);
@@ -78,60 +74,12 @@ export default function App() {
     const newList = copy(todoList).replace(todo).with(new_todo);
     setTodoList(newList);
   };
-  
 
-  class HideAndShowDivOnClick extends React.Component {
-    state = {
-      showDiv: false,
-    };
-
-    onButtonPress(event) {
-      const id = event.target.innerHTML;
-      // console.log(id);
-      const quickItem = createInput.current;
-      quickItem.value = id;
-    }
-
-    render() {
-      const { showDiv } = this.state;
-      return (
-        <div className="quicklist-container">
-          <button
-            className="quicklist"
-            onClick={() => this.setState({ showDiv: !showDiv })}
-          >
-            {showDiv ? "Hide Quicklist" : "Show Quicklist"}
-          </button>
-          {showDiv && (
-            <Tabs>
-              <TabList>
-                {Object.keys(Quicklist).map((v, i) => (
-                  <Tab key={i}>{v}</Tab>
-                ))}
-              </TabList>
-              {Object.keys(Quicklist).map((v, index) => (
-                <TabPanel key={index}>
-                  <h3>{v}</h3>
-                  <ul className="quicklist-content">
-                    {Quicklist[v].map((item, itemIndex) => (
-                      <li className="quicklist-item" key={itemIndex}>
-                        <button
-                          className="quicklist-item-btn"
-                          onClick={this.onButtonPress}
-                        >
-                          {item}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </TabPanel>
-              ))}
-            </Tabs>
-          )}
-        </div>
-      );
-    }
-  }
+  const todoFunctions = {
+    remove: remove,
+    changeState: changeState,
+    save: save,
+  };
 
   return (
     <div className="App">
@@ -143,29 +91,14 @@ export default function App() {
         </div>
       </header>
       <div className="main">
-        <div className="create" id={priority}>
+        <div className="create" id={"id" + priority}>
           <h1>New To-do</h1>
-          <HideAndShowDivOnClick />
-          <div className="priority">
-            <h4>Priority?</h4>
-            <form>
-              {["a", "b", "c"].map((v, i) => (
-                <span>
-                  <input
-                    type="radio"
-                    name="priority"
-                    id={v}
-                    value={v}
-                    onChange={handleChange}
-                    key={i}
-                    checked={v === priority ? true : false}
-                    required
-                  />
-                  <label htmlFor="not">{v}</label>
-                </span>
-              ))}
-            </form>
-          </div>
+          <HideAndShowDivOnClick createInput={createInput} />
+          <SelectPriority
+            names={["low", "normal", "high"]}
+            priority={priority}
+            handleChange={handleChange}
+          />
           <div className="textbox">
             <form>
               <input
@@ -183,23 +116,17 @@ export default function App() {
         </div>
 
         <div>
-          <h1>To-Do's</h1>
-          <TodoList
+          <TodoListComponent
             done={false}
             list={todoList}
-            remove={remove}
-            changeState={changeState}
-            save={save}
+            todoFunctions={todoFunctions}
           />
         </div>
         <div>
-          <h1>Done</h1>
-          <TodoList
+          <TodoListComponent
             done={true}
             list={todoList}
-            remove={remove}
-            changeState={changeState}
-            save={save}
+            todoFunctions={todoFunctions}
           />
         </div>
       </div>
