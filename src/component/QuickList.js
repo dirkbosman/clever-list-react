@@ -14,6 +14,7 @@ class HideAndShowDivOnClick extends React.Component {
     const id = event.target.innerHTML;
     const quickItem = this.props.createInput.current;
     quickItem.value = id;
+    this.props.createInput.current.focus();
   };
 
   render() {
