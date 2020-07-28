@@ -41,10 +41,23 @@ body {
   --todo-button-color: white;
 }
 
-.dirk-colors {
-}
+.dirk-colors {}
 
 .radhika-colors {
+  --text-onbackground: rgb(97, 83, 83);
+  --text-nobackground: black;
+  --background-header: #4c4e4d;
+  --textbox-border: black;
+  --textbox-placeholder: rgb(115, 120, 124);
+  --priority-1: #cfe0e8;
+  --priority-2: #b7d7e8;
+  --priority-3: #87bdd8;
+  --inner-shadow: white;
+  --outer-shadow: #777;
+  --header-button-background: #daebe8;
+  --header-button-color: black;
+  --todo-button-background:#daebe8;
+  --todo-button-color: black;
 }
 
 .App-logo {
@@ -105,11 +118,8 @@ label {
   padding: 10px;
   font-size: 16px;
   position: relative;
-<<
-  border-color: rgb(8, 8, 8);
-=======
   border-color: var(--textbox-border);
->>>>>>> 34919ac9f25b27d4c40cfb19f9c3bedc2a1f2a18
+
 }
 
 .textbox:focus {
@@ -223,6 +233,7 @@ label {
   padding: 5px 10px;
   text-align: center;
 }
+
 .priority {
   width: auto;
   min-width: 100px;

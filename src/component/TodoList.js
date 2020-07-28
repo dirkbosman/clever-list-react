@@ -40,7 +40,7 @@ function Todo({ todoItem, remove, changeState, save }) {
         type="text"
       />
       <button className="todo-button" onClick={() => remove(todoItem)}>
-        remove
+        Remove
       </button>
     </li>
   );
