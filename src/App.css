@@ -7,6 +7,46 @@ body {
   text-align: center;
 }
 
+.default-colors {
+  --text-onbackground: white;
+  --text-nobackground: black;
+  --background-header: #4c4e4d;
+  --textbox-border: black;
+  --textbox-placeholder: rgb(115, 120, 124);
+  --priority-1: #ddca67;
+  --priority-2: #e39853;
+  --priority-3: #e79880;
+  --inner-shadow: white;
+  --outer-shadow: #777;
+  --header-button-background: #86cb81;
+  --header-button-color: black;
+  --todo-button-background: black;
+  --todo-button-color: white;
+}
+
+.justin-colors {
+  --text-onbackground: white;
+  --text-nobackground: black;
+  --background-header: #4c4e4d;
+  --textbox-border: black;
+  --textbox-placeholder: rgb(115, 120, 124);
+  --priority-1: green;
+  --priority-2: blue;
+  --priority-3: red;
+  --inner-shadow: white;
+  --outer-shadow: #777;
+  --header-button-background: #86cb81;
+  --header-button-color: black;
+  --todo-button-background: black;
+  --todo-button-color: white;
+}
+
+.dirk-colors {
+}
+
+.radhika-colors {
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -15,11 +55,11 @@ body {
 h4 {
   padding: 0px;
   margin: 5px;
-  color: white;
+  color: var(--text-onbackground);
 }
 
 label {
-  color: white;
+  color: var(--text-onbackground);
 }
 
 .quicklist-content {
@@ -38,18 +78,14 @@ label {
 }
 
 .App-header {
-  background-color: #4c4e4d;
+  background-color: var(--background-header);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+  color: var(--text-onbackground);
 }
 
 @keyframes App-logo-spin {
@@ -69,7 +105,7 @@ label {
   padding: 10px;
   font-size: 16px;
   position: relative;
-  border-color: rgb(8, 8, 8);
+  border-color: var(--textbox-border);
 }
 
 .textbox:focus {
@@ -77,7 +113,7 @@ label {
 }
 
 .textbox::placeholder {
-  color: rgb(115, 120, 124);
+  color: var(--textbox-placeholder);
   text-align: center;
   width: 50px;
 }
@@ -85,23 +121,23 @@ label {
 .create {
   border-style: solid;
   border-width: 1px;
-  color: #ffffff;
+  color: var(--text-onbackground);
   padding: 5px;
   text-align: center;
-  text-shadow: 1px 1px 1px #000000;
+  text-shadow: 1px 1px 1px var(--textbox-border);
   margin: 0;
 }
 
 #id0 {
-  background-color: #ddca67;
+  background-color: var(--priority-1);
 }
 
 #id1 {
-  background-color: #e39853;
+  background-color: var(--priority-2);
 }
 
 #id2 {
-  background-color: #e79880;
+  background-color: var(--priority-3);
 }
 
 .App h1 {
@@ -112,13 +148,13 @@ label {
   font-size: 26px;
   line-height: 42px;
   text-transform: uppercase;
-  text-shadow: 0 2px white, 0 3px #777;
+  text-shadow: 0 2px var(--inner-shadow), 0 3px var(--outer-shadow);
 }
 
 .nav-container h1 {
   font-family: "IBMPlexSans-Medium";
-  color: black;
-  text-shadow: 0 1px white, 0 2px #777;
+  color: var(--text-nobackground);
+  text-shadow: 0 1px var(--inner-shadow), 0 2px var(--outer-shadow);
 }
 
 .entries {
@@ -142,14 +178,14 @@ label {
   border: 1px solid #444;
   outline: none;
   border-radius: 10px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 2px var(--outer-shadow) 0.3;
 }
 
 .todo-button {
   width: 70px;
   height: 25px;
-  background-color: rgb(0, 0, 0);
-  color: white;
+  background-color: var(--todo-button-background);
+  color: var(--todo-button-color);
   border: none;
   font-family: "IBMPlexSans-Medium";
   font-size: 14px;
@@ -161,38 +197,18 @@ label {
   text-align: center;
 }
 
-.addNew {
-  background-color: #776b68;
-  border-radius: 10px;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.addNew:focus {
-  outline: none;
-}
-
 .cut {
   text-decoration: line-through;
-  background-color: white;
   border-radius: 10px;
-  background-color: white;
   border: 1px solid #444;
   margin: 5px;
 }
 
-.submit {
+.addNew {
   width: 70px;
   height: 25px;
-  background-color: #86cb81;
-  color: black;
+  background-color: var(--header-button-background);
+  color: var(--header-button-color);
   border: none;
   font-family: "IBMPlexSans-Medium";
   font-size: 14px;
@@ -210,7 +226,6 @@ label {
   font-family: "IBMPlexSans-Medium";
   font-size: 15px;
   color: rgb(65, 60, 60);
-  background-color: rgb(255, 255, 255, 0, 5);
   border-radius: 10px;
 }
 
@@ -228,8 +243,8 @@ label {
 
 .quicklist {
   width: 100px;
-  background-color: #86cb81;
-  color: black;
+  background-color: var(--header-button-background);
+  color: var(--header-button-color);
   border: none;
   font-family: "IBMPlexSans-Medium";
   font-size: 14px;

@@ -80,8 +80,10 @@ export default function App() {
     save: save,
   };
 
+  const [color, setColor] = useState("default-colors");
+
   return (
-    <div className="App">
+    <div className={"App " + color}>
       <header>
         <div className="nav-container">
           <h1>* Clever *</h1>
@@ -105,7 +107,7 @@ export default function App() {
                 placeholder="What to do next?"
                 required
               />
-              <button className="submit" type="submit" onClick={create}>
+              <button className="addNew" type="submit" onClick={create}>
                 add{" "}
               </button>
             </form>
@@ -126,6 +128,20 @@ export default function App() {
             todoFunctions={todoFunctions}
           />
         </div>
+      </div>
+      <div>
+        <button onClick={(e) => setColor(e.target.innerHTML + "-colors")}>
+          justin
+        </button>
+        <button onClick={(e) => setColor(e.target.innerHTML + "-colors")}>
+          dirk
+        </button>
+        <button onClick={(e) => setColor(e.target.innerHTML + "-colors")}>
+          radhika
+        </button>
+        <button onClick={(e) => setColor(e.target.innerHTML)}>
+          default-colors
+        </button>
       </div>
     </div>
   );

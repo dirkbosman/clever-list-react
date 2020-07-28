@@ -1,9 +1,7 @@
 import React from "react";
-import { render } from "@testing-library/react";
 import App from "./App";
-import ReactTestUtils from "react-dom/test-utils"; // ES6
 
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 
 describe("App", () => {
   const app = mount(<App />);
