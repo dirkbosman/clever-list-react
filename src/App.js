@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 
-import TodoListComponent from "./component/TodoList";
+import TodoLists from "./component/TodoList";
 import { isInputNotEmpty, emptyInput } from "./functional/helper";
 
 import SelectPriority from "./component/SelectPriority";
 import HideAndShowDivOnClick from "./component/QuickList";
 
-import Confirm from "./component/Confirm";
+import Confirm from "./component/confirm";
 
 import copy from "./functional/copy";
 import TodoItem, { turnToDoItem } from "./Data";
@@ -15,6 +15,7 @@ import TodoItem, { turnToDoItem } from "./Data";
 export default function App() {
   const [todoList, setTodoList] = useState([]);
   const [priority, setPriority] = useState("1");
+  const [color, setColor] = useState("default-colors");
 
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem("todoList"));
@@ -80,8 +81,6 @@ export default function App() {
     save: save,
   };
 
-  const [color, setColor] = useState("default-colors");
-
   return (
     <div className={"App " + color}>
       <header>
@@ -89,6 +88,7 @@ export default function App() {
           <h1>* Clever *</h1>
         </div>
       </header>
+
       <div className="main">
         <div className="create" id={"id" + priority}>
           <h2>New To-do</h2>
@@ -114,21 +114,9 @@ export default function App() {
             </form>
           </div>
         </div>
-        <div className="list open">
-          <TodoListComponent
-            done={false}
-            list={todoList}
-            todoFunctions={todoFunctions}
-          />
-        </div>
-        <div className="list done">
-          <TodoListComponent
-            done={true}
-            list={todoList}
-            todoFunctions={todoFunctions}
-          />
-        </div>
+        <TodoLists todoList={todoList} todoFunctions={todoFunctions} />
       </div>
+
       <footer className="footer">
         <button
           className="pop-effect-1"
