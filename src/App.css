@@ -7,6 +7,11 @@ body {
   text-align: center;
 }
 
+header {
+  box-shadow: 0px 0px 2px 0px #888;
+  padding: 10px;
+}
+
 .default-colors {
   --text-onbackground: white;
   --text-nobackground: black;
@@ -65,10 +70,22 @@ label {
 .quicklist-content {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   list-style-type: none;
   padding: 5px;
+  margin: 5px;
+}
+
+.quicklist-item {
+  margin: 2px;
+}
+
+.quicklist-item-btn {
+  padding: 4px 6px;
+  border-radius: 5px;
+  background-color: var(--text-onbackground);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -125,7 +142,7 @@ label {
   padding: 5px;
   text-align: center;
   text-shadow: 1px 1px 1px var(--textbox-border);
-  margin: 0;
+  margin: 0px;
 }
 
 #id0 {
@@ -148,13 +165,6 @@ label {
   font-size: 26px;
   line-height: 42px;
   text-transform: uppercase;
-  text-shadow: 0 2px var(--inner-shadow), 0 3px var(--outer-shadow);
-}
-
-.nav-container h1 {
-  font-family: "IBMPlexSans-Medium";
-  color: var(--text-nobackground);
-  text-shadow: 0 1px var(--inner-shadow), 0 2px var(--outer-shadow);
 }
 
 .entries {
@@ -166,10 +176,10 @@ label {
 }
 
 .todo-text-input {
-  width: 250px;
+  width: auto;
   height: 20px;
   min-width: 100px;
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
   font-family: "IBMPlexSans-Medium";
   font-size: 15px;
@@ -189,11 +199,11 @@ label {
   border: none;
   font-family: "IBMPlexSans-Medium";
   font-size: 14px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   outline: none;
   cursor: pointer;
-  padding: 5px;
+  padding: 2px 4px;
   text-align: center;
 }
 
@@ -213,11 +223,11 @@ label {
   border: none;
   font-family: "IBMPlexSans-Medium";
   font-size: 14px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   outline: none;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 1px 2px;
   text-align: center;
 }
 .priority {
@@ -242,18 +252,18 @@ label {
   outline: none;
 }
 
-.quicklist {
+.quicklist-btn {
   width: 100px;
   background-color: var(--header-button-background);
   color: var(--header-button-color);
   border: none;
   font-family: "IBMPlexSans-Medium";
   font-size: 14px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   outline: none;
   cursor: pointer;
-  padding: 5px;
+  padding: 1px 2px;
   text-align: center;
 }
 
