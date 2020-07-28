@@ -47,7 +47,7 @@ class HideAndShowDivOnClick extends React.Component {
         )}
 
         <button
-          className="quicklist"
+          className="quicklist-btn"
           onClick={() => this.setState({ showDiv: !showDiv })}
         >
           {showDiv ? "Hide" : "Quicklist"}
