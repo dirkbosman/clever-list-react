@@ -25,20 +25,20 @@ body {
 }
 
 .justin-colors {
-  --text-onbackground: white;
+  --text-onbackground: black;
   --text-nobackground: black;
   --background-header: #4c4e4d;
-  --textbox-border: black;
-  --textbox-placeholder: rgb(115, 120, 124);
-  --priority-1: green;
-  --priority-2: blue;
-  --priority-3: red;
+  --textbox-border: none;
+  --textbox-placeholder: black;
+  --priority-1: rgb(0, 255, 255, 0.3);
+  --priority-2: rgb(0, 0, 255, 0.3);
+  --priority-3: rgb(128, 0, 128, 0.3);
   --inner-shadow: white;
   --outer-shadow: #777;
   --header-button-background: #86cb81;
   --header-button-color: black;
-  --todo-button-background: black;
-  --todo-button-color: white;
+  --todo-button-background: rgb(0, 255, 0, 0.3);
+  --todo-button-color: rgb(0, 0, 0, 1);
 }
 
 .dirk-colors {
@@ -202,6 +202,7 @@ label {
   border-radius: 10px;
   border: 1px solid #444;
   margin: 5px;
+  opacity: 0.1;
 }
 
 .addNew {
@@ -254,4 +255,30 @@ label {
   cursor: pointer;
   padding: 5px;
   text-align: center;
+}
+
+footer {
+  padding: 20px;
+}
+
+footer button {
+  min-width: 50px;
+  height: 50px;
+  border-color: transparent;
+  border-radius: 100%;
+  margin: 5px;
+}
+
+footer button:focus {
+  border-color: transparent !important;
+  outline: none;
+}
+
+.pop-effect-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.pop-effect-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
