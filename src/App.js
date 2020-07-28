@@ -101,27 +101,27 @@ export default function App() {
           <div className="textbox">
             <form>
               <input
-                className="textbox"
+                // className="textbox"
+                className="todo-text-input"
                 ref={createInput}
                 name="creationInput"
                 placeholder="What to do next?"
                 required
               />
               <button className="addNew" type="submit" onClick={create}>
-                add{" "}
+                Add{" "}
               </button>
             </form>
           </div>
         </div>
-
-        <div>
+        <div className="list open">
           <TodoListComponent
             done={false}
             list={todoList}
             todoFunctions={todoFunctions}
           />
         </div>
-        <div>
+        <div className="list done">
           <TodoListComponent
             done={true}
             list={todoList}
@@ -129,20 +129,32 @@ export default function App() {
           />
         </div>
       </div>
-      <div>
-        <button onClick={(e) => setColor(e.target.innerHTML + "-colors")}>
-          Justin
+      <footer className="footer">
+        <button
+          className="pop-effect-1"
+          onClick={(e) => setColor(e.target.innerHTML + "-colors")}
+        >
+          justin
         </button>
-        <button onClick={(e) => setColor(e.target.innerHTML + "-colors")}>
-          Dirk
+        <button
+          className="pop-effect-1"
+          onClick={(e) => setColor(e.target.innerHTML + "-colors")}
+        >
+          dirk
         </button>
-        <button onClick={(e) => setColor(e.target.innerHTML + "-colors")}>
-          Radhika
+        <button
+          className="pop-effect-1"
+          onClick={(e) => setColor(e.target.innerHTML + "-colors")}
+        >
+          radhika
         </button>
-        <button onClick={(e) => setColor(e.target.innerHTML)}>
+        <button
+          className="pop-effect-1"
+          onClick={(e) => setColor(e.target.innerHTML)}
+        >
           default-colors
         </button>
-      </div>
+      </footer>
     </div>
   );
 }

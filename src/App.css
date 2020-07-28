@@ -7,6 +7,11 @@ body {
   text-align: center;
 }
 
+header {
+  box-shadow: 0px 0px 2px 0px #888;
+  padding: 10px;
+}
+
 .default-colors {
   --text-onbackground: white;
   --text-nobackground: black;
@@ -25,23 +30,24 @@ body {
 }
 
 .justin-colors {
-  --text-onbackground: white;
+  --text-onbackground: black;
   --text-nobackground: black;
   --background-header: #4c4e4d;
-  --textbox-border: black;
-  --textbox-placeholder: rgb(115, 120, 124);
-  --priority-1: green;
-  --priority-2: blue;
-  --priority-3: red;
+  --textbox-border: none;
+  --textbox-placeholder: black;
+  --priority-1: rgb(0, 255, 255, 0.3);
+  --priority-2: rgb(0, 0, 255, 0.3);
+  --priority-3: rgb(128, 0, 128, 0.3);
   --inner-shadow: white;
   --outer-shadow: #777;
   --header-button-background: #86cb81;
   --header-button-color: black;
-  --todo-button-background: black;
-  --todo-button-color: white;
+  --todo-button-background: rgb(0, 255, 0, 0.3);
+  --todo-button-color: rgb(0, 0, 0, 1);
 }
 
-.dirk-colors {}
+.dirk-colors {
+}
 
 .radhika-colors {
   --text-onbackground: rgb(97, 83, 83);
@@ -56,7 +62,7 @@ body {
   --outer-shadow: #777;
   --header-button-background: #daebe8;
   --header-button-color: black;
-  --todo-button-background:#daebe8;
+  --todo-button-background: #daebe8;
   --todo-button-color: black;
 }
 
@@ -78,10 +84,22 @@ label {
 .quicklist-content {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   list-style-type: none;
   padding: 5px;
+  margin: 5px;
+}
+
+.quicklist-item {
+  margin: 2px;
+}
+
+.quicklist-item-btn {
+  padding: 4px 6px;
+  border-radius: 5px;
+  background-color: var(--text-onbackground);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -119,7 +137,6 @@ label {
   font-size: 16px;
   position: relative;
   border-color: var(--textbox-border);
-
 }
 
 .textbox:focus {
@@ -139,7 +156,7 @@ label {
   padding: 5px;
   text-align: center;
   text-shadow: 1px 1px 1px var(--textbox-border);
-  margin: 0;
+  margin: 0px;
 }
 
 #id0 {
@@ -162,13 +179,6 @@ label {
   font-size: 26px;
   line-height: 42px;
   text-transform: uppercase;
-  text-shadow: 0 2px var(--inner-shadow), 0 3px var(--outer-shadow);
-}
-
-.nav-container h1 {
-  font-family: "IBMPlexSans-Medium";
-  color: var(--text-nobackground);
-  text-shadow: 0 1px var(--inner-shadow), 0 2px var(--outer-shadow);
 }
 
 .entries {
@@ -180,10 +190,10 @@ label {
 }
 
 .todo-text-input {
-  width: 250px;
+  width: auto;
   height: 20px;
   min-width: 100px;
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
   font-family: "IBMPlexSans-Medium";
   font-size: 15px;
@@ -203,11 +213,11 @@ label {
   border: none;
   font-family: "IBMPlexSans-Medium";
   font-size: 14px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   outline: none;
   cursor: pointer;
-  padding: 5px;
+  padding: 2px 4px;
   text-align: center;
 }
 
@@ -216,6 +226,7 @@ label {
   border-radius: 10px;
   border: 1px solid #444;
   margin: 5px;
+  opacity: 0.1;
 }
 
 .addNew {
@@ -226,11 +237,11 @@ label {
   border: none;
   font-family: "IBMPlexSans-Medium";
   font-size: 14px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   outline: none;
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 1px 2px;
   text-align: center;
 }
 
@@ -256,17 +267,43 @@ label {
   outline: none;
 }
 
-.quicklist {
+.quicklist-btn {
   width: 100px;
   background-color: var(--header-button-background);
   color: var(--header-button-color);
   border: none;
   font-family: "IBMPlexSans-Medium";
   font-size: 14px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   outline: none;
   cursor: pointer;
-  padding: 5px;
+  padding: 1px 2px;
   text-align: center;
+}
+
+footer {
+  padding: 20px;
+}
+
+footer button {
+  min-width: 50px;
+  height: 50px;
+  border-color: transparent;
+  border-radius: 100%;
+  margin: 5px;
+}
+
+footer button:focus {
+  border-color: transparent !important;
+  outline: none;
+}
+
+.pop-effect-1 {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.pop-effect-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }

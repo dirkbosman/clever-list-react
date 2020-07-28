@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import QuickListData from "../Data/QuickListData";
@@ -14,6 +14,7 @@ class HideAndShowDivOnClick extends React.Component {
     const id = event.target.innerHTML;
     const quickItem = this.props.createInput.current;
     quickItem.value = id;
+    this.props.createInput.current.focus();
   };
 
   render() {
@@ -47,7 +48,7 @@ class HideAndShowDivOnClick extends React.Component {
         )}
 
         <button
-          className="quicklist"
+          className="quicklist-btn"
           onClick={() => this.setState({ showDiv: !showDiv })}
         >
           {showDiv ? "Hide" : "Quicklist"}
