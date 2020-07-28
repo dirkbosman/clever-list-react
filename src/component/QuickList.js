@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import QuickListData from "../Data/QuickListData";
