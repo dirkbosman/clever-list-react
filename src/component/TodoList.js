@@ -18,22 +18,19 @@ export default function TodoLists({ todoList, todoFunctions }) {
 }
 const TodoListComponent = ({ list, todoFunctions }) => {
   if (list.length === 0) return "";
+
   const headline = (!list[0].done && "To-Do's") || (list[0].done && "Done");
-  return (
-    <div>
-      <h2> {headline}</h2>
-
-      <TodoList list={list} todoFunctions={todoFunctions} />
-    </div>
-  );
-};
-
-export function TodoList({ list, todoFunctions }) {
   const todoItems = list
     .sort((a, b) => b.priority - a.priority)
     .map((item, i) => <Todo todoItem={item} {...todoFunctions} key={i} />);
-  return <ul className="entries">{todoItems}</ul>;
-}
+
+  return (
+    <div>
+      <h2> {headline}</h2>
+      <ul className="entries">{todoItems}</ul>
+    </div>
+  );
+};
 
 function Todo({ todoItem, remove, changeState, save }) {
   const cut = todoItem.done ? "cut" : "not-cut";

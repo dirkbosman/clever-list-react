@@ -10,21 +10,5 @@ export default class TodoItem {
   }
 }
 export function turnToDoItem(json) {
-  let prior = 0;
-  if (json.priority) {
-    switch (json.priority) {
-      case "a":
-        prior = 0;
-        break;
-      case "b":
-        prior = 1;
-        break;
-      case "c":
-        prior = 2;
-        break;
-      default:
-        prior = json.priority;
-    }
-  }
-  return new TodoItem(json.value, json.done, prior);
+  return new TodoItem(json.value, json.done, json.priority);
 }
