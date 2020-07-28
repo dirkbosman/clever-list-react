@@ -13,9 +13,9 @@ import copy from "./functional/copy";
 import TodoItem, { turnToDoItem } from "./Data";
 
 export default function App() {
+  /*Handle Local Storage*/
+
   const [todoList, setTodoList] = useState([]);
-  const [priority, setPriority] = useState("1");
-  const [color, setColor] = useState("default-colors");
 
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem("todoList"));
@@ -28,6 +28,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(todoList));
   }, [todoList]);
+
+  /*Create Input*/
+
+  const [priority, setPriority] = useState("1");
 
   const createInput = useRef(null);
 
@@ -51,6 +55,8 @@ export default function App() {
     const new_item = new TodoItem(value, false, priority);
     setTodoList([...todoList, new_item]);
   };
+
+  /*TodoItems functions*/
 
   const remove = (todo) => {
     Confirm("Are you sure?", "That you want to delete the todo?", () => {
@@ -81,6 +87,8 @@ export default function App() {
     save: save,
   };
 
+  /*Color templates */
+  const [color, setColor] = useState("dirk-colors");
   return (
     <div className={"App " + color}>
       <header>
@@ -135,12 +143,6 @@ export default function App() {
           onClick={(e) => setColor(e.target.innerHTML + "-colors")}
         >
           radhika
-        </button>
-        <button
-          className="pop-effect-1"
-          onClick={(e) => setColor(e.target.innerHTML)}
-        >
-          default-colors
         </button>
       </footer>
     </div>

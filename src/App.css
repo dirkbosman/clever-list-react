@@ -12,23 +12,6 @@ header {
   padding: 10px;
 }
 
-.default-colors {
-  --text-onbackground: white;
-  --text-nobackground: black;
-  --background-header: #4c4e4d;
-  --textbox-border: black;
-  --textbox-placeholder: rgb(115, 120, 124);
-  --priority-1: #ddca67;
-  --priority-2: #e39853;
-  --priority-3: #e79880;
-  --inner-shadow: white;
-  --outer-shadow: #777;
-  --header-button-background: #86cb81;
-  --header-button-color: black;
-  --todo-button-background: black;
-  --todo-button-color: white;
-}
-
 .justin-colors {
   --text-onbackground: green;
   --text-nobackground: black;
@@ -47,6 +30,20 @@ header {
 }
 
 .dirk-colors {
+  --text-onbackground: white;
+  --text-nobackground: black;
+  --background-header: #4c4e4d;
+  --textbox-border: black;
+  --textbox-placeholder: rgb(115, 120, 124);
+  --priority-1: #ddca67;
+  --priority-2: #e39853;
+  --priority-3: #e79880;
+  --inner-shadow: white;
+  --outer-shadow: #777;
+  --header-button-background: #86cb81;
+  --header-button-color: black;
+  --todo-button-background: black;
+  --todo-button-color: white;
 }
 
 .radhika-colors {
