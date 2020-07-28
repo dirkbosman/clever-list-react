@@ -131,13 +131,13 @@ export default function App() {
       </div>
       <div>
         <button onClick={(e) => setColor(e.target.innerHTML + "-colors")}>
-          justin
+          Justin
         </button>
         <button onClick={(e) => setColor(e.target.innerHTML + "-colors")}>
-          dirk
+          Dirk
         </button>
         <button onClick={(e) => setColor(e.target.innerHTML + "-colors")}>
-          radhika
+          Radhika
         </button>
         <button onClick={(e) => setColor(e.target.innerHTML)}>
           default-colors
