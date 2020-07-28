@@ -129,31 +129,34 @@ export default function App() {
           />
         </div>
       </div>
-      <footer className="footer">
-        <button
-          className="pop-effect-1"
-          onClick={(e) => setColor(e.target.innerHTML + "-colors")}
-        >
-          justin
-        </button>
-        <button
-          className="pop-effect-1"
-          onClick={(e) => setColor(e.target.innerHTML + "-colors")}
-        >
-          dirk
-        </button>
-        <button
-          className="pop-effect-1"
-          onClick={(e) => setColor(e.target.innerHTML + "-colors")}
-        >
-          radhika
-        </button>
-        <button
-          className="pop-effect-1"
-          onClick={(e) => setColor(e.target.innerHTML)}
-        >
-          default-colors
-        </button>
+      <footer>
+        <h3>Color Themes</h3>
+        <div className="footer">
+          <button
+            className="pop-effect-1"
+            onClick={(e) => setColor(e.target.innerHTML + "-colors")}
+          >
+            justin
+          </button>
+          <button
+            className="pop-effect-1"
+            onClick={(e) => setColor(e.target.innerHTML + "-colors")}
+          >
+            dirk
+          </button>
+          <button
+            className="pop-effect-1"
+            onClick={(e) => setColor(e.target.innerHTML + "-colors")}
+          >
+            radhika
+          </button>
+          <button
+            className="pop-effect-1"
+            onClick={(e) => setColor(e.target.innerHTML)}
+          >
+            default-colors
+          </button>
+        </div>
       </footer>
     </div>
   );
