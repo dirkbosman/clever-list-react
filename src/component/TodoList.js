@@ -44,9 +44,10 @@ function Todo({ todoItem, remove, changeState, save }) {
         type="checkbox"
       />
       <input
+        readOnly={todoItem.done}
         className={"todo-text-input " + cut}
         value={todoItem.value}
-        onChange={!todoItem.done && onChange}
+        onChange={!todoItem.done ? onChange : undefined}
         type="text"
       />
       <button className="todo-button" onClick={() => remove(todoItem)}>
